@@ -1,16 +1,27 @@
-# This is a sample Python script.
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from func import *
 
+i = 0
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
+"""
+basic concepts:
+    {} -> execute within executes
+    (){} -> functions as objects
+    {valname} 1 2 3 4 $awef
+    first is the storing variable name, everything after is the "stack"
+        operators such as  +-*/^%><= use it as a stack
+        stacks can be put in a stack, multiplied, etc.
+    ! indicates a command
+"""
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    file = open(sys.argv[1], "r").read().split("\n")
+    while i < len(file):
+        cmd = file[i].split(" ")
+        if len(cmd) == 0 or (len(cmd[0]) > 0 and "#" in cmd[0]):
+            print(file[i][1:])
+        elif "!" in cmd[0]:
+            functions[cmd[0][1:]](cmd)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        i += 1
